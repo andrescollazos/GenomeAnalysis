@@ -4,7 +4,7 @@
 
 
 > [!NOTE]
-> The project uses data derived from Zhou et al. (2023), “Chromosome-level genome assembly of [*Niphotrichum japonicum* provides new insights into heat stress responses in mosses.”](#references)
+> The project uses data derived from [Zhou et al. (2023), “Chromosome-level genome assembly of *Niphotrichum japonicum* provides new insights into heat stress responses in mosses.”](#references)
 
 ## Goals
 
