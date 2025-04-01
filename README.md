@@ -6,3 +6,10 @@
 > [!NOTE]
 > The project uses data derived from Zhou et al. (2023), “Chromosome-level genome assembly of *Niphotrichum japonicum* provides new insights into heat stress responses in mosses.”
 
+## Goals
+
+- Assemble one chromosome of the *Niphotrichum japonicum* genome using Nanopore long reads and Illumina short reads.  
+- Functionally annotate the assembled chromosome.  
+- Identify differentially expressed genes (DEGs) under heat stress.  
+- *(Extra)* Incorporate Hi-C data to improve assembly scaffolding.  
+- *(Extra)* Perform gene enrichment analysis for unique and/or differentially expressed genes.
