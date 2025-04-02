@@ -1,0 +1,44 @@
+GenomeAnalysis/
+├── data/
+│   ├── raw/                      # Links to original raw files
+│   ├── trimmed/                  # Trimmed reads
+│   ├── genome/                   # Genome-related files
+│   ├── rna_seq/                  # Processed RNA-seq files
+│   ├── hic/
+│   └── metadata/                 # Sample information, data description, etc.
+│
+├── analyses/
+│   ├── 01_preprocessing/
+│   │   ├── fastqc_raw/           # FastQC reports for raw reads
+│   │   ├── fastqc_trimmed/       # FastQC reports after trimming
+│   │   ├── logs/                 # Log files
+│   │   └── trimming/
+│   ├── 02_genome_assembly/
+|   │   ├── flye/
+│   |   └── logs/                    # Log files from Flye run
+│   ├── 03_polishing/
+│   ├── 04_evaluation/
+│   ├── 05_masking/
+│   ├── 06_rna_mapping/
+│   ├── 07_annotation_structural/
+│   ├── 08_annotation_functional/
+│   ├── 09_read_counting/
+│   ├── 10_differential_expression/
+│   ├── 11_assembly_scaffolding/  # Extra analysis
+│   └── 12_enrichment_analysis/   # Extra analysis
+│
+├── code/                         # Scripts for each step
+│   ├── 01_preprocessing.sh
+│   ├── 02_genome_assembly.sh
+│   └── ...
+│
+├── docs/                         # Documentation
+│   ├── images/                   # Figures and workflow diagrams
+│   └── folders_structure.txt
+│
+├── .gitignore                    # Files and folder to be ignored by git (e.g., raw data/raw/)
+│
+└── README.md                     # Project plan and description
+
+
+
