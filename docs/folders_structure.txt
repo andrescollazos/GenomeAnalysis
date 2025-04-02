@@ -1,6 +1,6 @@
 GenomeAnalysis/
 ├── data/
-│   ├── raw/                      # Links to original raw files
+│   ├── raw/                      # Symbolic Links to original raw files
 │   ├── trimmed/                  # Trimmed reads
 │   ├── genome/                   # Genome-related files
 │   ├── rna_seq/                  # Processed RNA-seq files
