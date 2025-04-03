@@ -6,12 +6,12 @@ chr3_hiC_R1.fastq.gz,Hi-C clean reads for chromosome 3,Illumina NovaSeq 6000
 chr3_hiC_R2.fastq.gz,Hi-C clean reads for chromosome 3,Illumina NovaSeq 6000
 chr3_illumina_R1.fastq.gz,Illumina clean reads for chromosome 3,Illumina NovaSeq 6000
 chr3_illumina_R2.fastq.gz,Illumina clean reads for chromosome 3,Illumina NovaSeq 6000
-Control_1_f1.fq.gz,Control transcriptome - replicate 1,Illumina NovaSeq 6000
-Control_1_r2.fq.gz,Control transcriptome - replicate 1,Illumina NovaSeq 6000
-Control_2_f1.fq.gz,Control transcriptome - replicate 2,Illumina NovaSeq 6000
-Control_2_r2.fq.gz,Control transcriptome - replicate 2,Illumina NovaSeq 6000
-Control_3_f1.fq.gz,Control transcriptome - replicate 3,Illumina NovaSeq 6000
-Control_3_r2.fq.gz,Control transcriptome - replicate 3,Illumina NovaSeq 6000
+Control_1_f1.fq.gz,Control transcriptome - replicate 1 - forward,Illumina NovaSeq 6000
+Control_1_r2.fq.gz,Control transcriptome - replicate 1 - reverse,Illumina NovaSeq 6000
+Control_2_f1.fq.gz,Control transcriptome - replicate 2 - forward,Illumina NovaSeq 6000
+Control_2_r2.fq.gz,Control transcriptome - replicate 2 - reverse,Illumina NovaSeq 6000
+Control_3_f1.fq.gz,Control transcriptome - replicate 3 - forward,Illumina NovaSeq 6000
+Control_3_r2.fq.gz,Control transcriptome - replicate 3 - reverse,Illumina NovaSeq 6000
 CRR809859_f1.fq.gz,Illumina clean reads of Niphotrichum japonicum,Illumina NovaSeq 6000
 CRR809859_r2.fq.gz,Illumina clean reads of Niphotrichum japonicum,Illumina NovaSeq 6000
 Heat_treated_42_12h_1_f1.fq.gz,Heat stress transcriptome at 42°C 12h - replicate 1,Illumina NovaSeq 6000
