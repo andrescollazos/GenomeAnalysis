@@ -16,19 +16,17 @@ module load bwa/0.7.18
 module load Pilon/1.24
 
 export SRCDIR="/home/anco6881/genome_analysis/GenomeAnalysis"
-export OUTPUT_DIR="$SRCDIR/analyses/03_polishing/"
+export JOB_DIR="$SRCDIR/analyses/03_polishing/"
 
-export REF_GENOME="$SRCDIR/analyses/02_genome_assembly/flye_out/assembly.fasta"
+export REF_GENOME="assembly.fasta"
 export FORWARD_READ="$SRCDIR/data/raw/dna_reads/chr3_illumina_R1.fastq.gz"
 export REVERSE_READ="$SRCDIR/data/raw/dna_reads/chr3_illumina_R2.fastq.gz"
 
-cd $SRCDIR/analyses/03_polishing/
 
 # Creates an allignment for the illumina reads using the assembled genome as a reference
-mkdir -p 01_mapping
-cd 01_mapping
+cd $JOB_DIR/01_mapping
 bwa index $REF_GENOME
-bwa mem -t 4 $REF_GENOME $FORWARD_READ $REVERSE_READ | samtools view -Sb - | samtools sort -o illumina_sorted.bam
+bwa mem -t 4 $REF_GENOME $FORWARD_READ $REVERSE_READ | samtools view -Sb - | samtools sort -o$
 samtools index illumina_sorted.bam
 
 # POLISHING
@@ -42,7 +40,3 @@ java -Xmx16G -jar $PILON_HOME/pilon.jar \
   --output polished_assembly \
   --outdir pilon_output \
   --threads 4
-
-
-
-

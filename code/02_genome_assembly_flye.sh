@@ -5,11 +5,13 @@
 #SBATCH -p core
 #SBATCH -n 8
 #SBATCH -t 12:00:00
-#SBATCH -J anco_flye_assembly​
+#SBATCH -J assembly​
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user andres-felipe.collazos-rozo.6881@student.uu.se
+#SBATCH --output=/home/anco6881/genome_analysis/GenomeAnalysis/analyses/02_genome_assembly/flye_out/%x.%j.out
 
-module load bioinfo-tools Flye/2.9.5
+module load bioinfo-tools
+module load Flye/2.95.
 
 export SRCDIR="/home/anco6881/genome_analysis/GenomeAnalysis"
 export NANO_FILE="chr3_clean_nanopore.fq.gz"

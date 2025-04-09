@@ -5,7 +5,7 @@
 #SBATCH -p core
 #SBATCH -n 2
 #SBATCH -t 30:00
-#SBATCH -J anco_pre_quality_control
+#SBATCH -J pre_fastqc
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user andres-felipe.collazos-rozo.6881@student.uu.se
 #SBATCH --output=/home/anco6881/genome_analysis/GenomeAnalysis/analyses/01_preprocessing/01_before_trimming/%x.%j.out

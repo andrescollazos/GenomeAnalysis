@@ -5,7 +5,7 @@
 #SBATCH -p core
 #SBATCH -n 2
 #SBATCH -t 45:00
-#SBATCH -J anco_trimming
+#SBATCH -J trimming
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user andres-felipe.collazos-rozo.6881@student.uu.se
 #SBATCH --output=/home/anco6881/genome_analysis/GenomeAnalysis/analyses/01_preprocessing/02_trimming/%x.%j.out
