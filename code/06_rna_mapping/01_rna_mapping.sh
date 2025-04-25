@@ -8,14 +8,14 @@
 #SBATCH -J rna_mapping
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=andres-felipe.collazos-rozo.6881@student.uu.se
-#SBATCH --output=/home/anco6881/genome_analysis/GenomeAnalysis/analyses/06_rna_mapping/%x.%j.out
+#SBATCH --output=/home/anco6881/genome_analysis/GenomeAnalysis/analyses/06_rna_mapping/01_mapping/%x.%j.out
 
 # Load Modules
 module load bioinfo-tools
 module load HISAT2/2.2.1
 
 export SRC_DIR="/home/anco6881/genome_analysis/GenomeAnalysis"
-export JOB_DIR="/proj/uppmax2025-3-3/nobackup/work/anco6881/rna_mapping"
+export JOB_DIR="/proj/uppmax2025-3-3/nobackup/work/anco6881/06_rna_mapping/01_mapping"
 export ASSEMBLY="$SRC_DIR/data/polished_assembly/polished_assembly.fasta"
 export RNA_READS="$SRC_DIR/data/rna_reads/"
 
