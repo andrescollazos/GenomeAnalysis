@@ -15,19 +15,11 @@ module load RepeatMasker/4.1.5
 
 export SRC_DIR="/home/anco6881/genome_analysis/GenomeAnalysis"
 export JOB_DIR="$SRC_DIR/analyses/05_masking/02_masking"
-export LIB="$SRC_DIR/analyses/05_masking/01_customer_library/consensi.fa.classified"
+export LIB="$SRC_DIR/analyses/05_masking/01_customer_library/njaponicum_db-families.fa"
 export ASSEMBLY="$SRC_DIR/data/polished_assembly/polished_assembly.fasta"
 
 mkdir -p $JOB_DIR
 cd $JOB_DIR
 
-RepeatMasker \
-  -lib $LIB \
-  -pa 8 \                 # 8 threads 
-  -xsmall \               # Mask repeats in lowercase 
-  -no_is \                # Skip bacterial insertion elements check
-  -gff \                  # Output GFF3 format annotation file
-  -html \
-  -dir $JOB_DIR \          
-  $ASSEMBLY
+RepeatMasker -lib "$LIB" -pa 8 -xsmall -no_is -gff -html -dir "$JOB_DIR" "$ASSEMBLY"
 
