@@ -24,6 +24,7 @@ cd "$JOB_DIR"
 
 for sam_file in $SAM_FILES_PATH/*.sam
 do
+    echo "Processing: ${sam_file}"
     base_name=$(basename "$sam_file" .sam)
     samtools view -bS "$sam_file" | samtools sort -o "${base_name}.sorted.bam"
     samtools index "${base_name}.sorted.bam"
