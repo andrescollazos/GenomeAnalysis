@@ -42,7 +42,9 @@ braker.pl \
 --genome="$MASKED_GENOME" \
 --bam="$BAM_FILES" \
 --softmasking \
+--etpmode \
 --species="niphotrichum_japonicum" \
+--gff3 \
 --cores=12 \
 --AUGUSTUS_CONFIG_PATH="$A_CONFIG_PATH" \
 --AUGUSTUS_BIN_PATH=/sw/bioinfo/augustus/3.4.0/snowy/bin \
