@@ -13,6 +13,10 @@
 # Load Modules
 module load bioinfo-tools braker/2.1.6
 
+# Add Gm key
+export HOME="/home/anco6881"
+export GM_KEY="$HOME/.gm_key"
+
 # Before running this script I must:
 # module load bioinfo-tools braker/2.1.6
 # Source Augustus config folder into the working directory (Check the script using cat $(echo $AUGUSTUS_CONFIG_COPY))
@@ -31,6 +35,8 @@ BAM_PATH="$SRC_DIR/analyses/06_rna_mapping/02_bam"
 BAM_FILES=$(echo ${BAM_PATH}/*.bam | sed 's/ /,/g')
 
 A_CONFIG_PATH="$JOB_DIR/augustus_config"
+
+cd "$JOB_DIR"
 
 braker.pl \
 --genome="$MASKED_GENOME" \
