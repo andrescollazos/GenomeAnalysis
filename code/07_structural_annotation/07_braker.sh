@@ -41,12 +41,11 @@ cd "$JOB_DIR"
 braker.pl \
 --genome="$MASKED_GENOME" \
 --bam="$BAM_FILES" \
---softmasking \
---etpmode \
+--softmasking=1 \
 --species="niphotrichum_japonicum" \
 --gff3 \
 --cores=12 \
 --AUGUSTUS_CONFIG_PATH="$A_CONFIG_PATH" \
 --AUGUSTUS_BIN_PATH=/sw/bioinfo/augustus/3.4.0/snowy/bin \
 --AUGUSTUS_SCRIPTS_PATH=/sw/bioinfo/augustus/3.4.0/snowy/scripts \
---GENEMARK_PATH=/sw/bioinfo/GeneMark/4.33-es/snowy
+--GENEMARK_PATH=/sw/bioinfo/GeneMark/4.68-es/snowy
