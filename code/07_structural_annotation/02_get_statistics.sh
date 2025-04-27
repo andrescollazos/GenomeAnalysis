@@ -1,7 +1,16 @@
 #!/bin/bash
 
-GTF_FILE="/home/anco6881/genome_analysis/GenomeAnalysis/analyses/07_structural_annotation/braker.gtf"
-OUT_FILE="/home/anco6881/genome_analysis/GenomeAnalysis/analyses/07_structural_annotation/gtf_statistics.txt"
+# Receive GTF file from command line
+GTF_FILE="$1"
+
+# Check if input was provided
+if [[ -z "$GTF_FILE" ]]; then
+    echo "Usage: $0 file.gtf"
+    exit 1
+fi
+
+# Create output filename by removing .gtf and adding .statistics.txt
+OUT_FILE="${GTF_FILE%.gtf}.statistics.txt"
 
 # Create (or overwrite) the output file
 {
