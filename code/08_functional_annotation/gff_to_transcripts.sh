@@ -20,5 +20,5 @@ JOB_DIR="$SRC_DIR/analyses/08_functional_annotation/01_get_transcripts/"
 GFF3_FILE="$SRC_DIR/analyses/07_structural_annotation/braker.gff3"
 GENOME_FILE="$SRC_DIR/data/polished_assembly/polished_assembly.fasta"
 
-# Extract transcript sequences
-gffread -w "${JOB_DIR}/braker_transcripts.fa" -g "$GENOME_FILE" "$GFF3_FILE" 
+# Extract protein sequences
+gffread -y "${JOB_DIR}/braker.aa" -g "$GENOME_FILE" "$GFF3_FILE" 
