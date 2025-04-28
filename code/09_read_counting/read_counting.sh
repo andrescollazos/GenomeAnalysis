@@ -3,7 +3,7 @@
 #SBATCH -A uppmax2025-3-3
 #SBATCH -M snowy
 #SBATCH -p core
-#SBATCH -n 8
+#SBATCH -n 4
 #SBATCH -t 12:00:00
 #SBATCH -J read_counting
 #SBATCH --mail-type=ALL
@@ -23,7 +23,7 @@ BAM_FILES=${BAM_PATH}/*.bam
 cd "$JOB_DIR"
 
 featureCounts -p --countReadPairs \
-  -T 8 \
+  -T 4 \
   -a "$GTF_FILE" -F GTF -t exon -g gene_id \
   -o "${JOB_DIR}/counts.txt" \
   $BAM_FILES
