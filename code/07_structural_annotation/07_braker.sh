@@ -44,6 +44,7 @@ braker.pl \
 --bam="$BAM_FILES" \
 --prot_seq="$PROTEINS" \
 --softmasking=1 \
+--etpmode \
 --species="niphotrichum_japonicum" \
 --gff3 \
 --cores=12 \
