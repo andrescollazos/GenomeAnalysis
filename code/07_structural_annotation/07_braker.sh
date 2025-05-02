@@ -33,6 +33,7 @@ JOB_DIR="/proj/uppmax2025-3-3/nobackup/work/anco6881/07_structural_annotation"
 MASKED_GENOME="$SRC_DIR/analyses/05_masking/02_masking/polished_assembly.fasta.masked"
 BAM_PATH="$SRC_DIR/analyses/06_rna_mapping/02_bam"
 BAM_FILES=$(echo ${BAM_PATH}/*.bam | sed 's/ /,/g')
+PROTEINS="$SRC_DIR/data/proteins/embryophyte_proteomes.faa"
 
 A_CONFIG_PATH="$JOB_DIR/augustus_config"
 
@@ -41,7 +42,9 @@ cd "$JOB_DIR"
 braker.pl \
 --genome="$MASKED_GENOME" \
 --bam="$BAM_FILES" \
+--prot_seq="$PROTEINS" \
 --softmasking=1 \
+--etpmode \
 --species="niphotrichum_japonicum" \
 --gff3 \
 --cores=12 \
