@@ -16,7 +16,7 @@ module load bioinfo-tools eggNOG-mapper/2.1.9
 SRC_DIR="/home/anco6881/genome_analysis/GenomeAnalysis"
 JOB_DIR="/proj/uppmax2025-3-3/nobackup/work/anco6881/08_functional_annotation/02_eggNOG_mapper/"
 
-PROTEINS_FILE="$SRC_DIR/analyses/08_functional_annotation/01_get_transcripts/braker.aa"
+PROTEINS_FILE="$SRC_DIR/analyses/07_structural_annotation/braker_standardized.aa"
 GENOME_FILE="$SRC_DIR/data/polished_assembly/polished_assembly.fasta"
 
 emapper.py -i "$PROTEINS_FILE" \
@@ -26,6 +26,6 @@ emapper.py -i "$PROTEINS_FILE" \
   --go_evidence experimental \
   --output n_japonicum \
   --output_dir "$JOB_DIR" \
-  --decorate_gff "$SRC_DIR/analyses/07_structural_annotation/braker.gff3" \
+  --decorate_gff "$SRC_DIR/analyses/07_structural_annotation/braker_standardized.gff3" \
   --decorate_gff_ID_field ID \
   --excel
