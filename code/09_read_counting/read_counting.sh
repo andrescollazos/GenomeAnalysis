@@ -16,7 +16,7 @@ SRC_DIR="/home/anco6881/genome_analysis/GenomeAnalysis"
 JOB_DIR="/proj/uppmax2025-3-3/nobackup/work/anco6881/09_read_counting"
 
 # Input Files
-GTF_FILE="$SRC_DIR/analyses/07_structural_annotation/braker.gtf"
+GFF_FILE="$SRC_DIR/analyses/08_functional_annotation/02_eggNOG_mapper/n_japonicum.emapper.decorated.gff"
 BAM_PATH="$SRC_DIR/analyses/06_rna_mapping/02_bam"
 BAM_FILES=${BAM_PATH}/*.bam
 
@@ -24,6 +24,6 @@ cd "$JOB_DIR"
 
 featureCounts -p --countReadPairs \
   -T 4 \
-  -a "$GTF_FILE" -F GTF -t exon -g gene_id \
+  -a "$GFF_FILE" -t gene -g ID \
   -o "${JOB_DIR}/counts.txt" \
   $BAM_FILES
