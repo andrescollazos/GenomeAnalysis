@@ -35,6 +35,17 @@ dds <- DESeqDataSetFromMatrix(
   design = ~ condition
 )
 
+dds
+
+# Pre filtering
+keep <- rowSums(counts(dds)) >= 10
+dds <- dds[keep,]
+
+# Set Factor Level
+dds$condition <- relevel(dds$condition, ref = "control")
+
+dds
+
 dds <- DESeq(dds)
 res <- results(dds)
 res
