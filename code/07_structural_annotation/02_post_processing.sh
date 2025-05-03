@@ -23,11 +23,13 @@ GFF_STANDARD_PATH="$JOB_DIR/$GFF_STD_NAME"
 
 GENOME_FILE="$SRC_DIR/data/polished_assembly/polished_assembly.fasta"
 
+cd $JOB_DIR
+
 # convert GFF into GFF (bioperl) format
 agat_convert_sp_gxf2gxf.pl -gff $GFF3_FILE -o $GFF_CLEANED
 
 # manage IDs
-agat_sp_manage_IDs.pl -gff $GFF_CLEANED -o $GFF_STANDARD_PATH
+agat_sp_manage_IDs.pl -gff $GFF_CLEANED -o $GFF_STANDARD_PATH --prefix NJAP --ensembl
 
 # Get feature statistics
 agat_sp_statistics.pl --gff $GFF_STANDARD_PATH -o "$JOB_DIR/braker_standardized.statistics.txt"
