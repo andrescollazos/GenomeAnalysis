@@ -82,16 +82,22 @@ ntd <- normTransform(dds)
 vsd <- vst(dds, blind=FALSE)
 rld <- rlog(dds, blind=FALSE)
 
-# Select top 20 expressed genes
-select <- order(rowMeans(counts(dds, normalized=TRUE)), decreasing=TRUE)[1:20]
+# Select the top 30 most variable genes
+select <- order(rowVars(assay(vsd)), decreasing=TRUE)
 
-# Plot heatmaps
-pheatmap(assay(ntd)[select,], cluster_rows=FALSE, show_rownames=FALSE,
-         cluster_cols=FALSE, annotation_col=coldata)
+# Plot
+pheatmap(assay(vsd)[select, ],
+         cluster_rows=TRUE,
+         show_rownames=FALSE,
+         cluster_cols=TRUE,
+         annotation_col=coldata,
+         color = colorRampPalette(c("green", "black", "red"))(100))
 
-pheatmap(assay(vsd)[select,], cluster_rows=FALSE, show_rownames=FALSE,
-         cluster_cols=FALSE, annotation_col=coldata)
-
-pheatmap(assay(rld)[select,], cluster_rows=FALSE, show_rownames=FALSE,
-         cluster_cols=FALSE, annotation_col=coldata)
+pheatmap(assay(vsd)[select, ],
+         scale="row",
+         cluster_rows=TRUE,
+         show_rownames=FALSE,
+         cluster_cols=TRUE,
+         annotation_col=coldata,
+         color = colorRampPalette(c("green", "black", "red"))(100))
 
