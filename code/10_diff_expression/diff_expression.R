@@ -147,4 +147,31 @@ ggplot(res_df, aes(x = log2FoldChange, y = -log10(padj), color = volcano_color))
   ) +
   theme_minimal()
 
+# Heatmap
+vsd <- vst(dds, blind=FALSE)
+
+# Filter to only significant genes (padj < 0.05)
+res_sig <- resLFC[!is.na(resLFC$padj) & resLFC$padj < 0.05, ]
+
+# Order by smallest adjusted p-value
+top_genes <- head(rownames(res_sig[order(res_sig$padj), ]), 50)
+
+# Extract normalized counts (transformed)
+mat <- assay(vsd)[top_genes, ]
+mat_scaled <- t(scale(t(mat)))
+
+# Annotation for columns
+annotation_col <- as.data.frame(colData(dds)[, "condition", drop = FALSE])
+
+pheatmap(
+  mat_scaled,
+  annotation_col = annotation_col,
+  show_rownames = FALSE,
+  cluster_rows = TRUE,
+  cluster_cols = TRUE,
+  scale = "none",
+  color = colorRampPalette(c("blue", "white", "red"))(100)
+)
+
+
 
