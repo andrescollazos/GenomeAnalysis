@@ -113,30 +113,38 @@ ggplot(res_df, aes(x = baseMean, y = log2FoldChange, color = diffexp)) +
   theme_minimal()
 
 
+# Volcano Plot
+# Add -log10(padj) column
+res_df$neglog10padj <- -log10(res_df$padj)
 
-
-
-
-
-
-
-
-
-
-
-# Heat maps
-ntd <- normTransform(dds)
-vsd <- vst(dds, blind=FALSE)
-rld <- rlog(dds, blind=FALSE)
-
-# Select the top 30 most variable genes
-select <- order(rowVars(assay(vsd)), decreasing=TRUE)
+# Define a significance label (optional)
+res_df$sig <- ifelse(res_df$padj < 0.05 & abs(res_df$log2FoldChange) > 1, "yes", "no")
+res_df$volcano_color <- ifelse(
+  res_df$padj < 0.05 & res_df$log2FoldChange > 1, "up",
+  ifelse(res_df$padj < 0.05 & res_df$log2FoldChange < -1, "down", "ns")
+)
 
 # Plot
-pheatmap(assay(vsd)[select, ],
-         cluster_rows=TRUE,
-         show_rownames=FALSE,
-         cluster_cols=TRUE,
-         annotation_col=coldata,
-         color = colorRampPalette(c("green", "black", "red"))(100))
+ggplot(res_df, aes(x = log2FoldChange, y = -log10(padj), color = volcano_color)) +
+  geom_point(alpha = 0.6) +
+  scale_color_manual(
+    values = c(
+      "up" = "red",
+      "down" = "blue",
+      "ns" = "gray70"
+    ),
+    labels = c(
+      "up" = "Upregulated (FDR < 0.05)",
+      "down" = "Downregulated (FDR < 0.05)",
+      "ns" = "Not significant"
+    ),
+    name = "Significance"
+  ) +
+  labs(
+    title = "Volcano plot",
+    x = "log2FoldChange",
+    y = "-log10 adjusted p-value"
+  ) +
+  theme_minimal()
+
 
