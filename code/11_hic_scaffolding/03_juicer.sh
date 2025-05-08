@@ -19,8 +19,8 @@ SRC_DIR="/home/anco6881/genome_analysis/GenomeAnalysis"
 JOB_DIR="/proj/uppmax2025-3-3/nobackup/work/anco6881/11_scaffolding/03_juicer"
 
 REF_GENOME="$JOB_DIR/polished_assembly.fasta"
-BIN_FILE="$SRC_DIR/yahs.out.bin"
-SCAFFOLDS_FINAL="$SRC_DIR/yahs.out_scaffolds_final.agp"
+BIN_FILE="$SRC_DIR/analyses/11_scaffolding/02_scaffolding/yahs.out.bin"
+SCAFFOLDS_FINAL="$SRC_DIR/analyses/11_scaffolding/02_scaffolding/yahs.out_scaffolds_final.agp"
 
 cd $JOB_DIR
 
