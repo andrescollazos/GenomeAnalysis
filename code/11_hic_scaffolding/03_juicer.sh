@@ -34,9 +34,9 @@ cd $JOB_DIR
     awk 'NF' > alignments_sorted.txt
 
 # Step 3: Extract scaffold sizes from the FASTA index
-cut -f1,2 polished_assembly.fasta.fai > scaffolds_final.chrom.sizes
+# cut -f1,2 polished_assembly.fasta.fai > scaffolds_final.chrom.sizes
 
-# Step 4: Generate the .hic file for Juicebox visualization
-java -Xmx32G -jar /proj/uppmax2025-3-3/Genome_Analysis/yahs/juicer_tools_1.22.01.jar pre \
-    alignments_sorted.txt yahs_output.hic scaffolds_final.chrom.sizes
+# # Step 4: Generate the .hic file for Juicebox visualization
+# java -Xmx32G -jar /proj/uppmax2025-3-3/Genome_Analysis/yahs/juicer_tools_1.22.01.jar pre \
+#     alignments_sorted.txt yahs_output.hic scaffolds_final.chrom.sizes
 
