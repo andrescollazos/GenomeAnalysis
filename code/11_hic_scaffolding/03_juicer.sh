@@ -18,25 +18,29 @@ THREADS=8
 SRC_DIR="/home/anco6881/genome_analysis/GenomeAnalysis/analyses/11_scaffolding/02_scaffolding"
 JOB_DIR="/proj/uppmax2025-3-3/nobackup/work/anco6881/11_scaffolding/03_juicer"
 
-# REF_GENOME="polished_assembly.fasta"
+REF_GENOME="$JOB_DIR/polished_assembly.fasta"
 BIN_FILE="$SRC_DIR/yahs.out.bin"
 SCAFFOLDS_FINAL="$SRC_DIR/yahs.out_scaffolds_final.agp"
 
 cd $JOB_DIR
 
 # Step 1: Index the FASTA (needed for AGP parsing and size extraction)
-# samtools faidx $REF_GENOME
+samtools faidx $REF_GENOME
 
 # Step 2: Create sorted alignment file for juicer_tools input
+echo "Running Juicer pre command"
 /proj/uppmax2025-3-3/Genome_Analysis/yahs/juicer pre \
     $BIN_FILE $SCAFFOLDS_FINAL polished_assembly.fasta.fai | \
     sort -k2,2d -k6,6d -T ./ --parallel=$THREADS -S32G | \
     awk 'NF' > alignments_sorted.txt
 
 # Step 3: Extract scaffold sizes from the FASTA index
-# cut -f1,2 polished_assembly.fasta.fai > scaffolds_final.chrom.sizes
+echo "Extracting scaffold sizes"
+samtools faidx "$SRC_DIR/yahs.out_scaffolds_final.fa" -o "$JOB_DIR/yahs.out_scaffolds_final.fa.fai"
+cut -f1,2 "$JOB_DIR/yahs.out_scaffolds_final.fa.fai" > scaffolds_final.chrom.sizes
 
-# # Step 4: Generate the .hic file for Juicebox visualization
-# java -Xmx32G -jar /proj/uppmax2025-3-3/Genome_Analysis/yahs/juicer_tools_1.22.01.jar pre \
-#     alignments_sorted.txt yahs_output.hic scaffolds_final.chrom.sizes
+echo "Generating .hic file"
+# Step 4: Generate the .hic file for Juicebox visualization
+java -Xmx32G -jar /proj/uppmax2025-3-3/Genome_Analysis/yahs/juicer_tools_1.22.01.jar pre \
+    alignments_sorted.txt yahs_output.hic scaffolds_final.chrom.sizes
 
