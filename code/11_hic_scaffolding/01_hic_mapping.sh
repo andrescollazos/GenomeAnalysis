@@ -33,11 +33,9 @@ samtools collate -@ $THREADs -O -u aln.bam | \
 samtools fixmate -@ $THREADs -m -u - - | \
 samtools sort -n -@ $THREADs -u - | \
 samtools markdup -@ $THREADs - $JOB_DIR/hic_to_contigs.bam
-samtools index $JOB_DIR/hic_to_contigs.bam
+samtools index $JOB_DIR/hic_to_contigs.bam -o hic_to_contigs.bam.bai
 
 ln -sf "$JOB_DIR/hic_to_contigs.bam" "$SRC_DIR/analyses/11_scaffolding/01_hic_mapping/hic_to_contigs.bam"
 ln -sf "$JOB_DIR/hic_to_contigs.bam.bai" "$SRC_DIR/analyses/11_scaffolding/01_hic_mapping/hic_to_contigs.bam.bai"
-
-rm aln.bam
 
 
