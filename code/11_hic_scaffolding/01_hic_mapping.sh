@@ -31,7 +31,7 @@ samtools view -Sb - > aln.bam
 
 samtools collate -@ $THREADs -O -u aln.bam | \
 samtools fixmate -@ $THREADs -m -u - - | \
-samtools sort -n -@ $THREADs -u - | \
+samtools sort -@ $THREADs -u - | \
 samtools markdup -@ $THREADs - $JOB_DIR/hic_to_contigs.bam
 samtools index $JOB_DIR/hic_to_contigs.bam -o hic_to_contigs.bam.bai
 
