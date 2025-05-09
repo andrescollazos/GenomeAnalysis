@@ -13,9 +13,9 @@
 module load bioinfo-tools
 module load quast/5.0.2
 
-SRCDIR="/home/anco6881/genome_analysis/GenomeAnalysis"
-JOB_DIR="$SRCDIR/analyses/11_scaffolding/04_evaluation/"
-SCAFFOLDS="$SRC_DIR/analyses/11_scaffolding/02_scaffolding/yahs.out_scaffolds_final.fa"
+SRC_DIR="/home/anco6881/genome_analysis/GenomeAnalysis/analyses/11_scaffolding/"
+JOB_DIR="$SRC_DIR/04_evaluation/"
+SCAFFOLDS="$SRC_DIR/02_scaffolding/yahs.out_scaffolds_final.fa"
 
 cd $JOB_DIR
 
