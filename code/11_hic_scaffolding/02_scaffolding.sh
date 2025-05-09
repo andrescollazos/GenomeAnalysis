@@ -19,4 +19,8 @@ REF_GENOME="$SRC_DIR/data/polished_assembly/polished_assembly.fasta"
 HIC_TO_CONTIGS="$SRC_DIR/analyses/11_scaffolding/01_hic_mapping/hic_to_contigs.bam"
 
 cd $JOB_DIR
-/proj/uppmax2025-3-3/Genome_Analysis/yahs/yahs $REF_GENOME $HIC_TO_CONTIGS
+/proj/uppmax2025-3-3/Genome_Analysis/yahs/yahs -q 10 $REF_GENOME $HIC_TO_CONTIGS
+
+ln -sf "$JOB_DIR/yahs.out.bin" "$SRC_DIR/analyses/11_scaffolding/02_scaffolding/yahs.out.bin"
+ln -sf "$JOB_DIR/yahs.out_scaffolds_final.fa" "$SRC_DIR/analyses/11_scaffolding/02_scaffolding/yahs.out_scaffolds_final.fa"
+ln -sf "$JOB_DIR/yahs.out_scaffolds_final.agp" "$SRC_DIR/analyses/11_scaffolding/02_scaffolding/yahs.out_scaffolds_final.agp"

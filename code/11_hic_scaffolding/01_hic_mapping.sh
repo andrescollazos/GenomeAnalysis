@@ -16,7 +16,7 @@ module load bwa/0.7.18
 
 THREADs=4
 
-SRCDIR="/home/anco6881/genome_analysis/GenomeAnalysis"
+SRC_DIR="/home/anco6881/genome_analysis/GenomeAnalysis"
 JOB_DIR="/proj/uppmax2025-3-3/nobackup/work/anco6881/11_scaffolding/01_hic_mapping"
 
 REF_GENOME="$JOB_DIR/polished_assembly.fasta"
@@ -31,8 +31,13 @@ samtools view -Sb - > aln.bam
 
 samtools collate -@ $THREADs -O -u aln.bam | \
 samtools fixmate -@ $THREADs -m -u - - | \
-samtools sort -@ $THREADs -u - | \
-samtools markdup -@ $THREADs - $JOB_DIR/assembly_markdup.bam
-samtools index $JOB_DIR/assembly_markdup.bam
+samtools sort -n -@ $THREADs -u - | \
+samtools markdup -@ $THREADs - $JOB_DIR/hic_to_contigs.bam
+samtools index $JOB_DIR/hic_to_contigs.bam
+
+ln -sf "$JOB_DIR/hic_to_contigs.bam" "$SRC_DIR/analyses/11_scaffolding/01_hic_mapping/hic_to_contigs.bam"
+ln -sf "$JOB_DIR/hic_to_contigs.bam.bai" "$SRC_DIR/analyses/11_scaffolding/01_hic_mapping/hic_to_contigs.bam.bai"
+
+rm aln.bam
 
 
