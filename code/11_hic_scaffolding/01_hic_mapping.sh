@@ -20,8 +20,8 @@ SRC_DIR="/home/anco6881/genome_analysis/GenomeAnalysis"
 JOB_DIR="/proj/uppmax2025-3-3/nobackup/work/anco6881/11_scaffolding/01_hic_mapping"
 
 REF_GENOME="$JOB_DIR/polished_assembly.fasta"
-FORWARD_READ="$SRCDIR/data/raw/hi_reads/chr3_hiC_R1.fastq.gz"
-REVERSE_READ="$SRCDIR/data/raw/hi_reads/chr3_hiC_R2.fastq.gz"
+FORWARD_READ="$SRC_DIR/data/raw/hi_reads/chr3_hiC_R1.fastq.gz"
+REVERSE_READ="$SRC_DIR/data/raw/hi_reads/chr3_hiC_R2.fastq.gz"
 
 cd $JOB_DIR
 
