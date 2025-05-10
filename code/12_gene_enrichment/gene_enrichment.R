@@ -38,12 +38,14 @@ go_df <- gff %>%
   ) %>%
   unnest(go_terms) %>%
   filter(!is.na(go_terms)) %>%
-  transmute(
-    go_id = as.character(go_terms),
-    Evidence = "IEA",
-    gene_id = as.character(gene_id)
+  # Prepare the dataframe for GOFrame
+  transmute( 
+    go_id = as.character(go_terms), # First column must be go terms id
+    Evidence = "IEA", # Second column must be type of Evidence
+    gene_id = as.character(gene_id) # Third columns must be gene ids
   ) %>%
-  as.data.frame(stringsAsFactors = FALSE)
+  as.data.frame(stringsAsFactors = FALSE) # Necessary for GO Frame
+
 goframe <- GOFrame(go_df, organism = "Niphotrichum japonicum")
 goallframe <- GOAllFrame(goframe)
 
@@ -62,13 +64,15 @@ params <- GSEAGOHyperGParams(
   geneSetCollection = gsc,
   geneIds = sig_genes, # Significant gene ids
   universeGeneIds = gene_universe, # All  genes
-  ontology = "BP",
+  ontology = "BP", # Biological Process
   pvalueCutoff = 0.05,
   conditional = FALSE,
   testDirection = "over"
 )
 
+# Gene enrichment Test
 go_result <- hyperGTest(params)
+# Obtain enriched GO Terms
 go_table_stats <- summary(go_result)
 write.csv(go_table_stats, "gostats_enrichment.csv", row.names = FALSE)
 
