@@ -17,66 +17,51 @@ if (!requireNamespace("GSEABase", quietly = TRUE)) {
   BiocManager::install("GSEABase")
 }
 
-
-
 library(dplyr)
 library(stringr)
-library(tidyr)
-library(tibble)
 library("rrvgo")
 library(GOstats)
 library(GSEABase)
 
-
 setwd('~/Documents/Studies/Genome Analysis/GenomeAnalysis/data/gene_enrichment/')
-
 
 # ------------------------------------------------------------------------------
 # Extract GO Terms from eggNOG GFF file
 gff <- read.delim("n_japonicum.gff", header = FALSE, comment.char = "#", sep = "\t")
 colnames(gff) <- c("seqid", "source", "type", "start", "end", "score", "strand", "phase", "attributes")
 
-# Filter for mRNA and extract gene ID and GO terms
-go_table <- gff %>%
+go_df <- gff %>%
   filter(type == "mRNA", source == "AUGUSTUS") %>%
   mutate(
     gene_id = str_extract(attributes, "Parent=[^;]+") %>% str_remove("Parent="),
     go_terms = str_extract(attributes, "GO:[^;]+") %>% str_extract_all("GO:\\d+")
   ) %>%
   unnest(go_terms) %>%
-  distinct(gene_id, go_terms)
-
-colnames(go_table) <- c("gene", "go_id")
-go_table <- go_table %>% filter(!is.na(go_id))
-
-# ------------------------------------------------------------------------------
-# Load Differential Expression Results
-res_df <- read.csv("deseq2_results.csv", row.names = 1)
-sig_genes <- rownames(res_df %>% filter(padj < 0.05 & abs(log2FoldChange) > 1))
-
-gene_universe <- rownames(res_df)
-gene_ids <- sig_genes
-
-
-
-# Filter and create clean base R data.frame
-go_df <- data.frame(
-  go_id = as.character(go_table$go_id),
-  Evidence = "IEA",
-  gene_id = as.character(go_table$gene),
-  stringsAsFactors = FALSE
-)
+  filter(!is.na(go_terms)) %>%
+  transmute(
+    go_id = as.character(go_terms),
+    Evidence = "IEA",
+    gene_id = as.character(gene_id)
+  ) %>%
+  as.data.frame(stringsAsFactors = FALSE)
 goframe <- GOFrame(go_df, organism = "Niphotrichum japonicum")
 goallframe <- GOAllFrame(goframe)
 
 # Make geneSetCollection object
 gsc <- GeneSetCollection(goallframe, setType = GOCollection())
 
+# ------------------------------------------------------------------------------
+# Load Differential Expression Results
+res_df <- read.csv("deseq2_results.csv", row.names = 1)
+sig_genes <- rownames(res_df %>% filter(padj < 0.05 & abs(log2FoldChange) > 1))
+gene_universe <- rownames(res_df)
+
+# Configure params for hyperGTest
 params <- GSEAGOHyperGParams(
   name = "GOstats enrichment",
   geneSetCollection = gsc,
-  geneIds = gene_ids,
-  universeGeneIds = gene_universe,
+  geneIds = sig_genes, # Significant gene ids
+  universeGeneIds = gene_universe, # All  genes
   ontology = "BP",
   pvalueCutoff = 0.05,
   conditional = FALSE,
@@ -87,12 +72,16 @@ go_result <- hyperGTest(params)
 go_table_stats <- summary(go_result)
 write.csv(go_table_stats, "gostats_enrichment.csv", row.names = FALSE)
 
+# ------------------------------------------------------------------------------
+# rrvgo
+
 simMatrix <- calculateSimMatrix(
   go_table_stats$GOBPID,
   orgdb = "org.At.tair.db",
   ont = "BP",
   method = "Rel"
 )
+# Calculate scores
 scores <- setNames(-log10(go_table_stats$Pvalue), go_table_stats$GOBPID)
 reducedTerms <- reduceSimMatrix(
   simMatrix,
