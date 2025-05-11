@@ -76,6 +76,8 @@ plotCounts(dds, gene=which.min(res$padj), intgroup="condition")
 
 # Convert to data frame
 res_df <- as.data.frame(resLFC)
+write.csv(res_df, "deseq2_results.csv", row.names = TRUE)
+
 
 # Categorize fold change magnitude
 res_df$diffexp <- cut(
