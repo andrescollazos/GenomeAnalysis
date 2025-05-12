@@ -14,7 +14,7 @@ module load bioinfo-tools
 module load quast/5.0.2
 
 SRC_DIR="/home/anco6881/genome_analysis/GenomeAnalysis"
-JOB_DIR="$SR_CDIR/analyses/04_evaluation/03_QUAST_polished_assembly"
+JOB_DIR="$SRC_DIR/analyses/04_evaluation/03_QUAST_polished_assembly"
 ASSEMBLY="$SRC_DIR/data/polished_assembly/polished_assembly.fasta"
 
 cd $JOB_DIR
