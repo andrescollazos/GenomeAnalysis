@@ -28,6 +28,7 @@ cog_labels = {
     'S': 'Function unknown'
 }
 
+# Manually extracted from the cog_counts.txt file generated in line 20 (08_functional_annotation/03_extract_statistics.sh)
 cog_counts = {
     'J': 72,
     'A': 48,

@@ -39,7 +39,7 @@ sizes = [namespace_counts[k] for k in namespace_counts]
 
 plt.figure(figsize=(7, 7))
 plt.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=140)
-plt.title("GO Level 1 Term Distribution")
+plt.title("GO ontology category distribution")
 plt.axis('equal')
 plt.tight_layout()
 plt.show()
