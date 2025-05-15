@@ -1,0 +1,15 @@
+Status	Control_1	Control_2	Control_3	Heat_treated_42_12h_1	Heat_treated_42_12h_2	Heat_treated_42_12h_3
+Assigned	1859349	1673622	1747553	1736805	1685111	1879670
+Unassigned_Unmapped	19512496	20003240	20858765	20197589	19662013	20027888
+Unassigned_Read_Type	0	0	0	0	0	0
+Unassigned_Singleton	0	0	0	0	0	0
+Unassigned_MappingQuality	0	0	0	0	0	0
+Unassigned_Chimera	0	0	0	0	0	0
+Unassigned_FragmentLength	0	0	0	0	0	0
+Unassigned_Duplicate	0	0	0	0	0	0
+Unassigned_MultiMapping	428193	314009	380905	429997	368097	352927
+Unassigned_Secondary	0	0	0	0	0	0
+Unassigned_NonSplit	0	0	0	0	0	0
+Unassigned_NoFeatures	125505	156547	138397	120645	114697	152578
+Unassigned_Overlapping_Length	0	0	0	0	0	0
+Unassigned_Ambiguity	31240	27519	29331	30881	26742	30564
