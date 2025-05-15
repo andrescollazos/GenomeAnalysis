@@ -240,7 +240,12 @@ mat <- assay(vsd)[top_genes, ]
 mat_scaled <- t(scale(t(mat)))  # z-score normalization per gene
 
 # Annotation for columns
-annotation_col <- as.data.frame(colData(dds)[, "condition", drop = FALSE])
+colnames(mat_scaled) <- c(
+  "Control 1", "Control 2", "Control 3",
+  "Heat treatment 1", "Heat treatment 2", "Heat treatment 3"
+)
+
+rownames(annotation_col) <- colnames(mat_scaled)
 
 pheatmap(
   mat_scaled,
