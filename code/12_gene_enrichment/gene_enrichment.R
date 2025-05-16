@@ -18,6 +18,7 @@ if (!requireNamespace("GSEABase", quietly = TRUE)) {
 }
 
 library(dplyr)
+library(tidyr)
 library(stringr)
 library("rrvgo")
 library(GOstats)
@@ -94,7 +95,6 @@ reducedTerms <- reduceSimMatrix(
   threshold = 0.7
 )
 scatterPlot(simMatrix, reducedTerms, addLabel = TRUE, onlyParents = TRUE)
-scatterPlot(simMatrix, reducedTerms, addLabel = TRUE)
 
 heatmapPlot(
   simMatrix,
@@ -105,7 +105,7 @@ heatmapPlot(
 )
 
 treemapPlot(reducedTerms)
-wordcloudPlot(reducedTerms, min.freq=1, colors="black")
+
 
 
 
